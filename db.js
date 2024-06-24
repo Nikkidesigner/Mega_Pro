@@ -18,7 +18,7 @@ pool.getConnection((err, connected) => {
   }
   console.log("connected successful");
   
-  pool.query(`SELECT * FROM students`, (err, result) => {
+  pool.query(`SELECT * FROM subjects`, (err, result) => {
     if(err){
       console.log("error while executing", err)
       return;
