@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Students</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .container {
+        margin-top: 50px;
+      }
+      .btn-group {
+        margin-bottom: 20px;
+      }
+      .btn-group .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-weight: 600;
+      }
+      .table-container {
+        display: none;
+      }
+      .table-container.active {
+        display: block;
+      }
+      h1 {
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+      .table thead th {
+        background-color: #007bff;
+        color: white;
+        font-weight: 600;
+      }
+      .table tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+      .form-group label {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">All Students</h1>
+      <div class="btn-group d-flex justify-content-center" role="group" aria-label="Toggle Tables">
+        <button type="button" class="btn btn-primary" id="showPending">
+          Pending
+        </button>
+        <button type="button" class="btn btn-secondary" id="showCompleted">
+          Completed
+        </button>
+      </div>
+      <div id="pendingTable" class="table-container active">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Roll Number</th>
+              <th>Student Name</th>
+              <th>Email</th>
+              <th>Add to Course</th>
+              <th>Add to Group</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="pendingBody">
+            <!-- Rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+      <div id="completedTable" class="table-container">
+        <div class="form-group">
+          <label for="courseFilter">Filter by Course:</label>
+          <select class="form-control" id="courseFilter">
+            <option value="">All Courses</option>
+          </select>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Roll Number</th>
+              <th>Student Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Group</th>
+            </tr>
+          </thead>
+          <tbody id="completedBody">
+            <!-- Rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const pendingTable = document.getElementById("pendingTable");
+        const completedTable = document.getElementById("completedTable");
+        const showPendingButton = document.getElementById("showPending");
+        const showCompletedButton = document.getElementById("showCompleted");
+        const pendingBody = document.getElementById("pendingBody");
+        const completedBody = document.getElementById("completedBody");
+        const courseFilter = document.getElementById("courseFilter");
+
+        let courses = [];
+        let groups = [];
+        let students = [];
+
+        showPendingButton.addEventListener("click", () => {
+          pendingTable.classList.add("active");
+          completedTable.classList.remove("active");
+          showPendingButton.classList.add("btn-primary");
+          showPendingButton.classList.remove("btn-secondary");
+          showCompletedButton.classList.remove("btn-primary");
+          showCompletedButton.classList.add("btn-secondary");
+        });
+
+        showCompletedButton.addEventListener("click", () => {
+          completedTable.classList.add("active");
+          pendingTable.classList.remove("active");
+          showCompletedButton.classList.add("btn-primary");
+          showCompletedButton.classList.remove("btn-secondary");
+          showPendingButton.classList.remove("btn-primary");
+          showPendingButton.classList.add("btn-secondary");
+        });
+
+        async function fetchCoursesAndGroups() {
+          try {
+            const [coursesResponse, groupsResponse] = await Promise.all([
+              fetch("http://localhost:3000/admin-student-management/courses"),
+              fetch("http://localhost:3000/admin-student-management/groups"),
+            ]);
+
+            courses = await coursesResponse.json();
+            groups = await groupsResponse.json();
+
+            console.log("Fetched Courses:", courses); // Debug
+            console.log("Fetched Groups:", groups); // Debug
+
+            populateCourseFilter();
+          } catch (error) {
+            console.error("Error fetching courses and groups:", error);
+          }
+        }
+
+        async function fetchStudents() {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/admin-student-management"
+            );
+            const data = await response.json();
+            console.log("Fetched Students:", data);
+            students = data.data;
+            populateTables(students);
+          } catch (error) {
+            console.error("Error fetching student data:", error);
+          }
+        }
+
+        function populateCourseFilter() {
+          courses.forEach((course) => {
+            const option = document.createElement("option");
+            option.value = course.course_id;
+            option.textContent = course.course_name;
+            courseFilter.appendChild(option);
+          });
+        }
+
+        function populateTables(students) {
+          pendingBody.innerHTML = "";
+          completedBody.innerHTML = "";
+
+          students.forEach((student) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+              <td>${student.roll_number}</td>
+              <td>${student.student_name}</td>
+              <td>${student.email}</td>
+              ${
+                student.course_id && student.group_id
+                  ? `
+                    <td>${student.course_name}</td>
+                    <td>${student.group_name}</td>
+                  `
+                  : `
+                    <td>
+                      <select class="form-control course-select">
+                        <option value="">-</option>
+                        ${courses
+                          .map(
+                            (course) =>
+                              `<option value="${course.course_id}">${course.course_name}</option>`
+                          )
+                          .join("")}
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control group-select">
+                        <option value="">-</option>
+                        ${groups
+                          .filter((g) => g.course_id == student.course_id)
+                          .map(
+                            (group) =>
+                              `<option value="${group.group_id}">${group.group_name}</option>`
+                          )
+                          .join("")}
+                      </select>
+                    </td>
+                    <td><button class="btn btn-primary save-btn">Save</button></td>
+                  `
+              }
+            `;
+
+            if (student.course_id && student.group_id) {
+              completedBody.appendChild(row);
+            } else {
+              pendingBody.appendChild(row);
+            }
+          });
+
+          document.querySelectorAll(".course-select").forEach((select) => {
+            select.addEventListener("change", (event) => {
+              const courseId = event.target.value;
+              const groupSelect = event.target
+                .closest("tr")
+                .querySelector(".group-select");
+              groupSelect.innerHTML = '<option value="">-</option>';
+
+              console.log("Selected Course ID:", courseId); // Debug
+
+              groups
+                .filter((group) => group.course_id == courseId)
+                .forEach((group) => {
+                  const option = document.createElement("option");
+                  option.value = group.group_id;
+                  option.textContent = group.group_name;
+                  groupSelect.appendChild(option);
+                });
+
+              console.log(
+                "Filtered Groups:",
+                groups.filter((group) => group.course_id == courseId)
+              ); // Debug
+            });
+          });
+
+          document.querySelectorAll(".save-btn").forEach((button) => {
+            button.addEventListener("click", async (event) => {
+              const row = event.target.closest("tr");
+              const rollNumber = row.children[0].textContent;
+              const course = row.children[3].querySelector("select").value;
+              const group = row.children[4].querySelector("select").value;
+
+              // Ensure group is undefined if no group is selected
+              const groupId = group === "" ? undefined : group;
+
+              const payload = {
+                roll_number: rollNumber,
+                course_id: course,
+                group_id: groupId,
+              };
+              console.log("Payload:", payload);
+
+              try {
+                const response = await fetch(
+                  "http://localhost:3000/admin-student-management/assign",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                  }
+                );
+                const responseData = await response.json();
+                console.log("Assign Response:", responseData);
+                fetchStudents();
+              } catch (error) {
+                console.error("Error saving assignment:", error);
+              }
+            });
+          });
+        }
+
+        courseFilter.addEventListener("change", () => {
+          const selectedCourse = courseFilter.value;
+          console.log("Selected Course for Filter:", selectedCourse); // Debug
+          if (selectedCourse === "") {
+            populateTables(students);
+          } else {
+            const filteredStudents = students.filter(
+              (student) => student.course_id == selectedCourse
+            );
+            populateTables(filteredStudents);
+          }
+        });
+
+        fetchCoursesAndGroups();
+        fetchStudents();
+      });
+    </script>
+  </body>
+</html>

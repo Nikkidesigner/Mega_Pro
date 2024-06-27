@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subjects</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+      body {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+        padding-top: 10px;
+      }
+      .showSubjects {
+        text-align: center;
+        font-size: 35px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: #333;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+      .input-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px auto;
+        border: 2px solid lightgray;
+        border-radius: 10px;
+        height: 50px;
+        width: 400px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+      }
+      label {
+        font-size: 20px;
+        font-weight: 500;
+        color: #333;
+      }
+      select {
+        padding: 10px;
+        flex: 1;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        margin-right: 10px;
+      }
+      .btn {
+        background-color: blue;
+        color: white;
+        height: 50px;
+        width: 150px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn:hover {
+        background-color: darkblue;
+      }
+
+      #inputfield {
+        height: 45px;
+        width: 230px;
+        font-size: 17px;
+        border: 1px solid lightgray;
+        border-radius: 8px;
+        padding-left: 10px;
+      }
+
+      .output {
+        margin-top: 20px;
+        padding: 20px;
+        width: 400px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .subject-item {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="showSubjects">Show All Subjects</p>
+    <div class="input-box">
+      <label for="courseSelect">Select Course:</label>
+      <select id="courseSelect">
+        <!-- Options will be dynamically populated -->
+      </select>
+      <button class="btn" id="btnid" onclick="showSubjects()">
+        Show Subjects
+      </button>
+    </div>
+
+    <div class="input-box">
+      <input type="text" id="inputfield" />
+      <button class="btn" onclick="addSubject()">Add Subjects</button>
+    </div>
+    <div class="output" id="subjectList">
+      <p class="showSubjects">All Subjects</p>
+    </div>
+    <script>
+      async function fetchSubjects(courseId) {
+        try {
+          const url = `http://localhost:3000/home/subjects/show-subject/${courseId}`;
+          console.log(`Fetching subjects from URL: ${url}`); // Log the URL being fetched
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log("API response:", data); // Log the entire response for debugging
+
+          // Assuming data structure contains subjects under a key, e.g., data.rows
+          const subjects = data.rows || data.data || []; // Adjust this based on the actual response structure
+
+          console.log("Subjects:", subjects); // Log subjects to verify correct data
+          updateSubjectList(subjects);
+        } catch (error) {
+          console.error("Error fetching subjects:", error);
+        }
+      }
+
+      function updateSubjectList(subjects) {
+        const subjectList = document.getElementById("subjectList");
+        subjectList.innerHTML = '<p class="showSubjects">All Subjects</p>'; // Clear existing subjects
+        if (!Array.isArray(subjects)) {
+          console.error("Subjects data is not an array:", subjects);
+          return;
+        }
+        subjects.forEach((subject) => {
+          const subjectContainer = document.createElement("div");
+          subjectContainer.classList.add("subject-item");
+          const paragraph = document.createElement("p");
+          paragraph.textContent = subject.subject_name;
+          subjectContainer.appendChild(paragraph);
+          subjectList.appendChild(subjectContainer);
+        });
+      }
+
+      function showSubjects() {
+        const courseSelect = document.getElementById("courseSelect");
+        const selectedCourse = courseSelect.value;
+        console.log(`Selected course ID: ${selectedCourse}`);
+        fetchSubjects(selectedCourse);
+      }
+
+      async function addSubject() {
+        const subjectName = document.getElementById("inputfield").value;
+        const courseSelect = document.getElementById("courseSelect");
+        const courseId = courseSelect.value;
+
+        if (!subjectName || !courseId) {
+          alert("Please select a course and enter a subject name.");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "http://localhost:3000/home/subjects/add-subject",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                subject_name: subjectName,
+                course_id: courseId,
+              }),
+            }
+          );
+          if (response.ok) {
+            alert("Subject added successfully!");
+            showSubjects(); // Refresh the subject list
+          } else {
+            const errorData = await response.json();
+            alert(`Failed: ${errorData.error}`);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Failed: Network error");
+        }
+      }
+
+      async function updateCourseOptions() {
+        const courseSelect = document.getElementById("courseSelect");
+        courseSelect.innerHTML = ""; // Clear existing options
+
+        try {
+          const response = await fetch(
+            `http://localhost:3000/home/courses/show-courses`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log("API response:", data); // Log the entire response for debugging
+          const courses = data.data || []; // Use data.data to access the courses array
+
+          // Log the type of courses and its content for debugging
+          console.log("Type of courses:", typeof courses);
+          console.log("Courses array:", courses);
+
+          if (!Array.isArray(courses)) {
+            throw new Error("Courses is not an array");
+          }
+
+          if (courses.length === 0) {
+            console.warn("No courses found in the response.");
+          }
+
+          courses.forEach((course) => {
+            const option = document.createElement("option");
+            option.value = course.course_id; // Assuming course_id is the property for course ID
+            option.textContent = course.course_name; // Assuming course_name is the property for course name
+            courseSelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching courses:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", updateCourseOptions);
+    </script>
+  </body>
+</html>

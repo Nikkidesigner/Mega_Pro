@@ -18,13 +18,13 @@ pool.getConnection((err, connected) => {
   }
   console.log("connected successful");
   
-  pool.query(`SELECT * FROM subjects`, (err, result) => {
-    if(err){
-      console.log("error while executing", err)
-      return;
-    }
-    console.log(result);
-  })
+  // pool.query(`SELECT * FROM subjects`, (err, result) => {
+  //   if(err){
+  //     console.log("error while executing", err)
+  //     return;
+  //   }
+  //   console.log(result);
+  // })
 });
 const promisePool = pool.promise();
 

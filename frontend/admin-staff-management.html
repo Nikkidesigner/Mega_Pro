@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1, h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .table td {
+            background-color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .update-form {
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">All Staff</h1>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Staff Name</th>
+                    <th>Email</th>
+                    <th>Course Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="staffTableBody">
+                <!-- Rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="update-form">
+            <h2 class="text-center">Update Staff Details</h2>
+            <form id="updateForm">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="course">Select Course</label>
+                    <select class="form-control" id="course" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="role">Select Role</label>
+                    <select class="form-control" id="role" required>
+                        <option value="staff">Staff</option>
+                        <option value="coordinator">Coordinator</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const staffTableBody = document.getElementById("staffTableBody");
+            const updateForm = document.getElementById("updateForm");
+            const emailInput = document.getElementById("email");
+            const courseSelect = document.getElementById("course");
+            const roleSelect = document.getElementById("role");
+            let selectedStaff = null;
+
+            async function fetchStaff() {
+                try {
+                    const response = await fetch("http://localhost:3000/admin-staff-management/all-staff");
+                    const data = await response.json();
+                    console.log("Staff data:", data); // Log the response data
+                    populateStaffTable(data);
+                } catch (error) {
+                    console.error("Error fetching staff data:", error);
+                }
+            }
+
+            async function fetchCourses() {
+                try {
+                    const response = await fetch("http://localhost:3000/admin-staff-management/courses");
+                    const data = await response.json();
+                    console.log("Courses data:", data); // Log the response data
+                    populateCourseSelect(data);
+                } catch (error) {
+                    console.error("Error fetching courses:", error);
+                }
+            }
+
+            function populateStaffTable(staff) {
+                staffTableBody.innerHTML = "";
+                if (Array.isArray(staff)) {
+                    staff.forEach(staffMember => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${staffMember.employee_number}</td>
+                            <td>${staffMember.staff_name}</td>
+                            <td>${staffMember.email}</td>
+                            <td>${staffMember.course_name}</td>
+                            <td>${staffMember.role}</td>
+                            <td><button class="btn btn-primary update-btn">Update</button></td>
+                        `;
+                        row.querySelector(".update-btn").addEventListener("click", () => {
+                            selectedStaff = staffMember;
+                            emailInput.value = staffMember.email;
+                            courseSelect.value = staffMember.course_name;
+                            roleSelect.value = staffMember.role;
+                        });
+                        staffTableBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Staff data is not an array:", staff);
+                }
+            }
+
+            function populateCourseSelect(courses) {
+                courseSelect.innerHTML = "";
+                if (Array.isArray(courses)) {
+                    courses.forEach(course => {
+                        const option = document.createElement("option");
+                        option.value = course.course_name;
+                        option.textContent = course.course_name;
+                        courseSelect.appendChild(option);
+                    });
+                } else {
+                    console.error("Courses data is not an array:", courses);
+                }
+            }
+
+            updateForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (selectedStaff) {
+                    const payload = {
+                        staff_id: selectedStaff.staff_id,
+                        email: emailInput.value,
+                        course_name: courseSelect.value,
+                        role: roleSelect.value
+                    };
+                    try {
+                        const response = await fetch("http://localhost:3000/admin-staff-management/update-staff-details", {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                        const result = await response.json();
+                        if (response.ok) {
+                            alert("Staff details updated successfully");
+                            fetchStaff();
+                        } else {
+                            alert("Failed to update staff details");
+                        }
+                    } catch (error) {
+                        console.error("Error updating staff details:", error);
+                    }
+                }
+            });
+
+            fetchCourses();
+            fetchStaff();
+        });
+    </script>
+</body>
+</html>
