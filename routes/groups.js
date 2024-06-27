@@ -3,9 +3,6 @@ const router = express.Router();
 const db = require('../db'); 
 const utils = require('../utils'); 
 
-router.get('/add-groups',(req, res)=>{
-  res.send("groups");
-})
 
 // POST endpoint to add a groups related to a course
 router.post('/add-groups', async (req, res) => {

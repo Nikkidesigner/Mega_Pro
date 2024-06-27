@@ -13,6 +13,8 @@ const subjectRoutes = require('./routes/subject');
 const groupsRoutes = require('./routes/groups');
 const adminStudentManagement = require('./routes/admin-student-management');
 const adminStaffManagement = require('./routes/admin-staff-management');
+const evaluation_scheme = require('./routes/evaluation_scheme');
+const evaluationSchemeRoutes = require('./routes/add-evaluation');    
 
 // Initialize app
 const app = express();
@@ -31,6 +33,11 @@ app.use('/home/subjects', subjectRoutes);
 app.use('/home/groups', groupsRoutes); 
 app.use('/admin-student-management', adminStudentManagement); 
 app.use('/admin-staff-management', adminStaffManagement);
+app.use('/evaluation_scheme', evaluation_scheme);
+app.use('/add-evaluation', evaluationSchemeRoutes);
+
+// other routes...
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
