@@ -22,15 +22,17 @@
       padding: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    .content h2 {
+    .content h2{
       display: flex;
       align-items: center;
       justify-content: center;
+
     }
-    p {
+     p{
       display: flex;
       align-items: center;
       justify-content: center;
+
     }
     .header-content {
       display: flex;
@@ -85,23 +87,23 @@
     }
 
     .button-show-students {
-      background-color: #6c757d; /* Dark Gray */
+      background-color: #f58220;
     }
 
     .button-add-mark-scheme {
-      background-color: #007bff; /* Blue */
+      background-color: #ffbe4d;
     }
 
     .button-add-evaluation {
-      background-color: #28a745; /* Green */
+      background-color: #ff9797;
     }
 
     .button-assigned-task {
-      background-color: #ffc107; /* Yellow */
+      background-color: #59ff80;
     }
 
     .button-show-completed-tasks {
-      background-color: #dc3545; /* Red */
+      background-color: #e94057;
       position: relative;
     }
 
@@ -126,60 +128,65 @@
   </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
-        <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="staff-home.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">options</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                options
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="showstudentstaff.html">show students</a>
-                <a class="dropdown-item" href="addevalution.html">completed Tasks</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="teacherpendingtask.html">Pending Tasks</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <a href="staff/login.html" id="logout-icon" class="nav-item" title="Logout">
-              <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
-          </a>
-           </form>
-           <div class="user" style="color: white;">Staff Member: staff</div>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark" >
+    <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="cocohome.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">options</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              options
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="showstudentcoco.html">show students</a>
+              <a class="dropdown-item" href="evaluation_scheme.html">Add mark schema</a>
+              <a class="dropdown-item" href="add_evaluation.html">Add Evaluation</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="assigned_task_approve.html">Approval Pending</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="staff/login.html" id="logout-icon" class="nav-item" title="Logout">
+          <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
+      </a>
+       </form>
+    </div>
+  </nav>
   <div class="iframe1">
   <div class="main">
     <div class="content">
-      <h2>Welcome, staff</h2>
-      <p>This is the Staff Home page!</p>
+      <h2>Welcome, coco</h2>
+      <p>This is the Coco Home page!</p>
       <div class="buttons">
-        <div class="button button-show-students" onclick="window.location.href='showstudentstaff.html'">
+        <div class="button button-show-students" onclick="window.location.href='showstudentcoco.html'">
           <div class="button-text">Show Students</div>
         </div>
-       
-        <div class="button button-assigned-task" onclick="window.location.href='teacherpendingtask.html'">
-          <div class="button-text">Pending Tasks</div>
+        <div class="button button-add-mark-scheme" onclick="window.location.href='evaluation_scheme.html'">
+          <div class="button-text">Add Mark Scheme</div>
+        </div>
+        <div class="button button-add-evaluation" onclick="window.location.href='add_evaluation.html'">
+          <div class="button-text">Add Evaluation</div>
+        </div>
+        <div class="button button-assigned-task" onclick="window.location.href='assigned_task_approve.html'">
+          <div class="button-text">Approval Pending</div>
         </div>
         
-        <div class="button button-show-completed-tasks" onclick="window.location.href='staffcompletedstaff.html'">
-          <div class="button-text"> Completed Tasks</div>
-        </div>
+        
     
       </div>
   

@@ -140,7 +140,7 @@
           const password = document.getElementById("staff-password").value;
   
           try {
-            const response = await fetch(
+            const data = await fetch(
               "http://localhost:3000/home/staff/login",
               {
                 method: "POST",
@@ -151,16 +151,48 @@
                   email,
                   password
                 }),
-                
-  
               }
             );
   
-            if (response.ok) {
+            if (data.ok) {
               alert("login successful!");
-              window.location.href = "staff-home.html";
+                // Handle the response data
+                const jsonData = await data.json()
+                console.log("Success:", jsonData.data.token);
+
+                toastr.success("Login successful!");
+
+
+
+                // Store the token in local storage
+                localStorage.setItem("token", jsonData.data.token);
+
+                // Decode the token to get the user role
+                const decodedToken = jwt_decode(jsonData.data.token);
+                const role = decodedToken.role;
+
+                console.log("role-", role);
+                debugger;
+                // Redirect based on the role
+                switch (role) {
+                  case "student":
+                    window.location.href = "student/student-home.html";
+                    break;
+                  case "admin":
+                    window.location.href = "admin/admin_home.html";
+                    break;
+                  case "coordinator":
+                    window.location.href = "coco/cocohome.html";
+                    break;
+                  case "staff":
+                    window.location.href = "staff-home.html";
+                    break;
+                  default:
+                    window.location.href = "login.html";
+                    break;
+                }
             } else {
-              const errorData = await response.json();
+              const errorData = await data.json();
               alert(`Registration failed: ${errorData.error}`);
             }
           } catch (error) {
@@ -169,7 +201,7 @@
           }
         });
   
-        function validateForm() {
+        function validateForm(){
           return (
             validateEmail() &&
             validatePassword()

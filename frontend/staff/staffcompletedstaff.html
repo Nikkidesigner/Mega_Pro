@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+.iframe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  margin-bottom: 400px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  height: 70vh;
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th,
+  td,
+  tr {
+    border: none;
+    border-bottom: 1px solid #dddddd;
+    width: 100%;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr {
+    margin-bottom: 10px;
+  }
+}
+
+#approve-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 20px;
+}
+
+#approve-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+#approve-button:hover {
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="staff-home.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">options</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                options
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="showstudentstaff.html">show students</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="teacherpendingtask.html">Pending Tasks</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <a href="staff/login.html" id="logout-icon" class="nav-item" title="Logout">
+              <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
+          </a>
+           </form>
+        </div>
+      </nav>
+
+      <div id="approve-button-container">
+        <button id="approve-button" onclick="window.location.href='coordinator_approve.html'">Approve Tasks</button>
+      </div>
+      
+      <div class="iframe">
+        <div class="container">
+          <h2>Course DAC</h2>
+          <h3>Completed Tasks</h3>
+          <table id="task-table">
+            <thead>
+              <tr>
+                <th>Staff Name</th>
+                <th>Student Name</th>
+                <th>Group Name</th>
+                <th>Subject Name</th>
+                <th>Theory</th>
+                <th>Lab</th>
+                <th>IA1</th>
+                <th>IA2</th>
+                <th>From Date</th>
+                <th>Till Date</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+<script>
+// dummy data
+const tasks = [
+  {
+    staffName: "test",
+    studentName: "s3",
+    groupName: "D1",
+    subjectName: "Java",
+    theory: 2,
+    lab: 27,
+    ia1: 17,
+    ia2: 17,
+    fromDate: "Mar 18, 2024",
+    tillDate: "Mar 19, 2024"
+  },
+  {
+    staffName: "test",
+    studentName: "s1",
+    groupName: "D1",
+    subjectName: "Java",
+    theory: 25,
+    lab: 25,
+    ia1: 15,
+    ia2: 15,
+    fromDate: "Mar 18, 2024",
+    tillDate: "Mar 19, 2024"
+  },
+  {
+    staffName: "test",
+    studentName: "s2",
+    groupName: "D1",
+    subjectName: "Java",
+    theory: 24,
+    lab: 24,
+    ia1: 14,
+    ia2: 14,
+    fromDate: "Mar 18, 2024",
+    tillDate: "Mar 19, 2024"
+  }
+];
+
+// populate table with data
+const tableBody = document.getElementById("task-table").getElementsByTagName("tbody")[0];
+tasks.forEach((task) => {
+  const row = tableBody.insertRow();
+  row.innerHTML = `
+    <td>${task.staffName}</td>
+    <td>${task.studentName}</td>
+    <td>${task.groupName}</td>
+    <td>${task.subjectName}</td>
+    <td>${task.theory}</td>
+    <td>${task.lab}</td>
+    <td>${task.ia1}</td>
+    <td>${task.ia2}</td>
+    <td>${task.fromDate}</td>
+    <td>${task.tillDate}</td>
+  `;
+});
+    
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

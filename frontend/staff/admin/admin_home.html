@@ -13,6 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      background-image: url(wallpaperflare.com_wallpaper.jpg);
     }
 
     .header {
@@ -84,24 +85,25 @@
       transition: background-color 0.3s, opacity 0.3s;
     }
 
+    /* New Button Color Combos */
     .button-show-students {
-      background-color: #6c757d; /* Dark Gray */
+      background-color: #007bff;
     }
 
     .button-add-mark-scheme {
-      background-color: #007bff; /* Blue */
+      background-color: #28a745;
     }
 
     .button-add-evaluation {
-      background-color: #28a745; /* Green */
+      background-color: #dc3545;
     }
 
     .button-assigned-task {
-      background-color: #ffc107; /* Yellow */
+      background-color: #6f42c1;
     }
 
     .button-show-completed-tasks {
-      background-color: #dc3545; /* Red */
+      background-color: #343a40;
       position: relative;
     }
 
@@ -125,7 +127,7 @@
     }
   </style>
 </head>
-<body>
+<body style="background-image: url(wallpaperflare.com_wallpaper.jpg);">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
         <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,20 +137,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="staff-home.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="admin_home.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">options</a>
+              <a class="nav-link" href="">options</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 options
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="showstudentstaff.html">show students</a>
-                <a class="dropdown-item" href="addevalution.html">completed Tasks</a>
+                <a class="dropdown-item" href="subjects.html">subject</a>
+                <a class="dropdown-item" href="grups.html">groups</a>
+                <a class="dropdown-item" href="admin-student-group.html">courses</a>
+
+                <a class="dropdown-item" href="admin-student-group.html">student manegement</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="teacherpendingtask.html">Pending Tasks</a>
+                <a class="dropdown-item" href="admin-staff-management.html">staff manegement</a>
               </div>
             </li>
             <li class="nav-item">
@@ -160,25 +165,30 @@
               <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
           </a>
            </form>
-           <div class="user" style="color: white;">Staff Member: staff</div>
+           <div class="user" style="color: white;">coordinator coco</div>
         </div>
       </nav>
   <div class="iframe1">
   <div class="main">
     <div class="content">
-      <h2>Welcome, staff</h2>
-      <p>This is the Staff Home page!</p>
+      <h2>Welcome, Admin</h2>
+      <p>This Is The Admin Home Page!</p>
       <div class="buttons">
-        <div class="button button-show-students" onclick="window.location.href='showstudentstaff.html'">
-          <div class="button-text">Show Students</div>
+        <div class="button button-show-students" onclick="window.location.href='Courses.html'">
+          <div class="button-text">courses</div>
         </div>
-       
-        <div class="button button-assigned-task" onclick="window.location.href='teacherpendingtask.html'">
-          <div class="button-text">Pending Tasks</div>
+        <div class="button button-add-mark-scheme" onclick="window.location.href='subjects.html'">
+          <div class="button-text">subjects</div>
+        </div>
+        <div class="button button-add-evaluation" onclick="window.location.href='grups.html'">
+          <div class="button-text">groups</div>
+        </div>
+        <div class="button button-assigned-task" onclick="window.location.href='admin-student-group.html'">
+          <div class="button-text">student manegement</div>
         </div>
         
-        <div class="button button-show-completed-tasks" onclick="window.location.href='staffcompletedstaff.html'">
-          <div class="button-text"> Completed Tasks</div>
+        <div class="button button-show-completed-tasks" onclick="window.location.href='admin-staff-management.html'">
+          <div class="button-text">staff manegement</div>
         </div>
     
       </div>

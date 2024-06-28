@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Student Management System</title>
+    <style>
+        .iframe1 {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .table {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .table-cell {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #5355ee;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark" >
+        <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+       
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="cocohome.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">options</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  options
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="addmarks_subject_coco.html">Add mark schema</a>
+                    <a class="dropdown-item" href="addevalution.html">Add Evaluation</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="assigned_task_approve.html">Approval Pending</a>
+                  </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <a href="staff/login.html" id="logout-icon" class="nav-item" title="Logout">
+              <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
+          </a>
+           </form>
+        </div>
+      </nav>
+      <div class="iframe1">
+    <h1>Student Management System</h1>
+
+    <div class="container">
+        <div class="table-container">
+            <h2>Select Course Name:</h2>
+            <div class="form-container">
+                <select id="course-select">
+                    <option value="" >Select Course Name:</option>
+                    <option value="DAC">DAC</option>
+                    <option value="DES">DES</option>
+                    <option value="DMC">DMC</option>
+                </select>
+                <button class="button" onclick="showStudents()">Show Students</button>
+            </div>
+            <div id="students-table" class="table" style="display: none;">
+                <div class="table-cell">Roll Number</div>
+                <div class="table-cell">Student Name</div>
+                <div class="table-cell">All Students</div>
+                <div class="table-cell">Email</div>
+                <div class="table-cell">Add to Course</div>
+                <div class="table-cell">Actions</div>
+            </div>
+        </div>
+    </div>
+       
+
+  
+
+    <script>
+        function showStudents() {
+            // Add JavaScript code to show students of selected course
+            document.getElementById('students-table').style.display = 'flex';
+        }
+
+        
+    </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
+</html>

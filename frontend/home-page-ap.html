@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Marks Entry App</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .iframe1 {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            background-image: url(wallpaperflare.com_wallpaper.jpg);
+            background-size: cover;
+
+        }
+
+        .welcome-message {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border: 2px solid black;
+            border-radius: 3vh;
+            background-color: rgb(178, 206, 237);
+        }
+
+        .message p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .features {
+            background-color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar-brand {
+                margin-bottom: 1rem;
+            }
+
+            .navbar-links {
+                flex-direction: column;
+            }
+
+            .navbar-link {
+                margin-bottom: 1rem;
+            }
+
+            .iframe1 {
+                height: 50vh;
+            }
+
+            .welcome-message {
+                font-size: 1.5rem;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+
+            .features h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-item {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/Internship/project/frontend/Student/login.html">Student login <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Internship/project/frontend/staff/login.html" style="color: white;">staff login</a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </nav>
+
+    <!-- Welcome Message -->
+    <div class="iframe1">
+        <div class="welcome-message">
+            <h1>Welcome to Marks Entry App!</h1>
+            <div class="message">
+                <p>Enter marks and track student progress with ease.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <h2>Features</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature-item">
+                    <h3>Easy Marks Entry</h3>
+                    <p>Input marks quickly and efficiently using our user-friendly interface.</p>
+                </div>
+                <div class="col-md-4 feature-item">
+                    <h3>Real-time Tracking</h3>
+                    <p>Monitor student progress in real-time with our advanced tracking system.</p>
+                </div>
+                <div class="col-md-4 feature-item">
+                    <h3>Secure Data</h3>
+                    <p>All your data is securely stored and protected with top-notch security measures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Marks Entry App. All rights reserved.
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDzwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

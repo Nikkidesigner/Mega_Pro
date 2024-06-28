@@ -34,7 +34,7 @@ router.post("/login", async (request, response) => {
   const { email, password } = request.body;
   try {
     const encryptedPassword = String(cryptoJS.SHA256(password));
-    const statement = `SELECT roll_number, email FROM students WHERE email = ? AND password = ?`;
+    const statement = `SELECT roll_number, email, role FROM students WHERE email = ? AND password = ?`;
     const [users] = await db.execute(statement, [email, encryptedPassword]);
     if (users.length == 0) {
       response.status(401).send(utils.createError(`student does not exist`));
@@ -44,6 +44,7 @@ router.post("/login", async (request, response) => {
         {
           id: user.id,
           email: user.email,
+          role: user.role
         },
         config.SECRET_KEY
       );
