@@ -21,9 +21,9 @@ The Student marks entry webapp designed to facilitate the management of student 
 # Contribution Details
 **Team Members and Responsibilities**
 - **Member 1: ajinkya patil**
-**Responsibilities:** Frontend development, including the creation of the login page, course and group management components, and responsive design.
+- **Responsibilities:** Frontend development, including the creation of the login page, course and group management components, and responsive design.
 - **Member 2: Prathamesh Pise**
-**Responsibilities:** Backend development, including setting up the server, creating RESTful APIs, and handling authentication with JWT. Evaluation management feature, including the 'Add Evaluation' component and mark entry functionality for staff members.
+- **Responsibilities:** Backend development, including setting up the server, creating RESTful APIs, and handling authentication with JWT. Evaluation management feature, including the 'Add Evaluation' component and mark entry functionality for staff members.
 - **Member 3: Nikhil Pawar**
-**Responsibilities:** Database design and implementation, including the creation of schemas for students, staff, courses, and groups, as well as writing SQL queries. Integration of frontend and backend, ensuring seamless communication between the two, and overall project coordination.
+- **Responsibilities:** Database design and implementation, including the creation of schemas for students, staff, courses, and groups, as well as writing SQL queries. Integration of frontend and backend, ensuring seamless communication between the two, and overall project coordination.
 
