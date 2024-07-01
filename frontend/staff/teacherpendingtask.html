@@ -4,23 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mark Entry</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <style>
-      .iframecourse {
+      body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 100vw;
         margin: 0;
-        padding-bottom: 400px;
+        padding: 0;
+      }
+      .navbar {
+        margin-bottom: 20px;
       }
       .table-container {
         width: 100%;
         max-width: 1000px;
+        margin: 0 auto;
         background-color: #fff;
         padding: 20px;
         border-radius: 8px;
@@ -34,7 +37,8 @@
         width: 100%;
         border-collapse: collapse;
       }
-      th, td {
+      th,
+      td {
         padding: 10px;
         text-align: left;
         border-bottom: 1px solid #ddd;
@@ -60,15 +64,19 @@
         opacity: 0.8;
       }
       @media screen and (max-width: 768px) {
-        table, th, td {
+        table,
+        th,
+        td {
           display: block;
         }
-        th, td {
+        th,
+        td {
           padding: 10px;
           text-align: right;
           position: relative;
         }
-        th::before, td::before {
+        th::before,
+        td::before {
           content: attr(data-label);
           position: absolute;
           left: 0;
@@ -83,144 +91,249 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark" >
-        <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-       
-        
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="staff-home.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">options</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  options
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="showstudentstaff.html">show students </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="staffcompletedstaff.html">completed Tasks</a>
-                  </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <a href="staff/login.html" id="logout-icon" class="nav-item" title="Logout">
-              <img src="image.png" alt="Logout Icon" style="height: 8vh; margin-right: 10vw;">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      data-bs-theme="dark"
+    >
+      <a class="navbar-brand" href="home-page-ap.html">Marks-Entry-App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="staff-home.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">options</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              options
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="showstudentstaff.html"
+                >show students
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="staffcompletedstaff.html"
+                >completed Tasks</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link disabled"
+              href="#"
+              tabindex="-1"
+              aria-disabled="true"
+              >Disabled</a
+            >
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <a
+            href="staff/login.html"
+            id="logout-icon"
+            class="nav-item"
+            title="Logout"
+          >
+            <img
+              src="image.png"
+              alt="Logout Icon"
+              style="height: 8vh; margin-right: 10vw"
+            />
           </a>
-           </form>
-        </div>
-      </nav>
-<br>
-<div class="iframecourse">
-  <div class="table-container">
-    <h1>Unapproved Tasks</h1>
-    <table id="taskTable">
-      <thead>
-        <tr>
-          <th>Student ID</th>
-          <th>Subject ID</th>
-          <th>Theory</th>
-          <th>Lab</th>
-          <th>IA1</th>
-          <th>IA2</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Tasks will be dynamically inserted here -->
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<div id="editForm" class="hidden">
-  <div class="table-container">
-    <h2>Edit Marks</h2>
-    <label>
-      Theory:
-      <input type="number" id="theory" />
-    </label>
+        </form>
+      </div>
+    </nav>
     <br />
-    <label>
-      Lab:
-      <input type="number" id="lab" />
-    </label>
     <br />
-    <label>
-      IA1:
-      <input type="number" id="ia1" />
-    </label>
-    <br />
-    <label>
-      IA2:
-      <input type="number" id="ia2" />
-    </label>
-    <br />
-    <button class="btn btn-save" id="saveBtn">Save</button>
-  </div>
-</div>
+    <div class="iframecourse">
+      <div class="table-container">
+        <h1>Unapproved Tasks</h1>
+        <table id="taskTable">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Subject Name</th>
+              <th>Theory</th>
+              <th>Lab</th>
+              <th>IA1</th>
+              <th>IA2</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Tasks will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    fetchUnapprovedTasks();
-  });
+    <div id="editForm" class="hidden">
+      <div class="table-container">
+        <h2>Edit Marks</h2>
+        <label>
+          Theory:
+          <input type="number" id="theory" />
+        </label>
+        <br />
+        <label>
+          Lab:
+          <input type="number" id="lab" />
+        </label>
+        <br />
+        <label>
+          IA1:
+          <input type="number" id="ia1" />
+        </label>
+        <br />
+        <label>
+          IA2:
+          <input type="number" id="ia2" />
+        </label>
+        <br />
+        <button class="btn btn-save" id="saveBtn">Save</button>
+      </div>
+    </div>
 
-  async function fetchUnapprovedTasks() {
-    const token = localStorage.getItem("token"); // Get JWT token from localStorage
-    if (!token) {
-      console.error("JWT token not found.");
-      return;
-    }
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script>
+      // JavaScript file for mark entry functionality
 
-    try {
-      const decodedToken = jwt_decode(token); // Decode JWT token
-      const courseName = decodedToken.course_name;
-      const response = await fetch(`http://localhost:3000/home/staff/show-unapproved-tasks/${courseName}`, {
-        method: "GET",
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
-        },
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchUnapprovedTasks();
       });
-      const data = await response.json();
-      const actualData = data.data;
-      console.log('actualData :>> ', actualData);
-      actualData.forEach((task) => {
-        const tbody = document.getElementById("taskTable").querySelector("tbody");
-        tbody.innerHTML = "";
-        const row = document.createElement("tr");
-        console.log('row :>> ', row);
-        row.innerHTML = `
-          <td data-label="Student ID">${task.student_id}</td>
-          <td data-label="Subject ID">${task.subject_id}</td>
-          <td data-label="Theory">${task.theory}</td>
-          <td data-label="Lab">${task.lab}</td>
-          <td data-label="IA1">${task.IA1}</td>
-          <td data-label="IA2">${task.IA2}</td>
-          <td data-label="Actions"><button class="btn btn-edit" onclick="editTask(${task.entry_id}, ${task.theory}, ${task.lab}, ${task.IA1}, ${task.IA2})">Edit</button></td>
-        `;
-        tbody.appendChild(row);
-      });
-    } catch (error) {
-      console.error("Error decoding JWT token:", error);
-    }
-  }
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIyql5sH6omU5Rs1Kn7e5hZKstha" crossorigin="anonymous"></script>
-</body>
+
+      async function fetchUnapprovedTasks() {
+        const token = localStorage.getItem("token"); // Get JWT token from localStorage
+        if (!token) {
+          console.error("JWT token not found.");
+          return;
+        }
+
+        try {
+          const decodedToken = jwt_decode(token); // Decode JWT token
+          const courseName = decodedToken.course_name;
+          const response = await fetch(
+            `http://localhost:3000/home/staff/show-unapproved-tasks/${courseName}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          const actualData = data.data;
+          console.log("actualData :>> ", actualData);
+          const tbody = document
+            .getElementById("taskTable")
+            .querySelector("tbody");
+          tbody.innerHTML = ""; // Clear the table body before appending new rows
+          actualData.forEach((task) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td data-label="Student Name">${task.student_name}</td>
+        <td data-label="Subject Name">${task.subject_name}</td>
+        <td data-label="Theory"><input type="number" value="${task.theory}" disabled></td>
+        <td data-label="Lab"><input type="number" value="${task.lab}" disabled></td>
+        <td data-label="IA1"><input type="number" value="${task.IA1}" disabled></td>
+        <td data-label="IA2"><input type="number" value="${task.IA2}" disabled></td>
+        <td data-label="Actions"><button class="btn btn-edit" onclick="editTask(this, ${task.entry_id})">Edit</button></td>
+      `;
+            tbody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Error fetching unapproved tasks:", error);
+        }
+      }
+
+      function editTask(button, entryId) {
+        const row = button.closest("tr");
+        const inputs = row.querySelectorAll('input[type="number"]');
+
+        inputs.forEach((input) => {
+          if (parseInt(input.value) !== 0) {
+            input.disabled = false;
+          }
+        });
+
+        button.textContent = "Save";
+        button.className = "btn btn-save";
+        button.onclick = () => saveTask(row, entryId);
+      }
+
+      async function saveTask(row, entryId) {
+        const inputs = row.querySelectorAll('input[type="number"]');
+        const theory = inputs[0].value;
+        const lab = inputs[1].value;
+        const ia1 = inputs[2].value;
+        const ia2 = inputs[3].value;
+
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(
+            `http://localhost:3000/home/staff/update-marks/${entryId}`,
+            {
+              method: "PUT",
+              headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ theory, lab, ia1, ia2 }),
+            }
+          );
+
+          if (response.ok) {
+            toastr.success("Marks updated successfully");
+            fetchUnapprovedTasks(); // Refresh table data after successful update
+          } else {
+            toastr.error("Failed to update marks");
+          }
+        } catch (error) {
+          console.error("Error updating marks:", error);
+          toastr.error("Error updating marks");
+        }
+      }
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIyql5sH6omU5Rs1Kn7e5hZKstha"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

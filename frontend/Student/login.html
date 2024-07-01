@@ -145,6 +145,7 @@
           const password = document.getElementById("student-password").value;
 
           try {
+            debugger;
             const data = await fetch(
               "http://localhost:3000/home/student/login",
               {
@@ -156,10 +157,9 @@
                   email,
                   password
                 }),
-
-
               }
             );
+              
 
             if (data.ok) {
               alert("login successful!");
@@ -169,8 +169,6 @@
 
                 toastr.success("Login successful!");
 
-
-
                 // Store the token in local storage
                 localStorage.setItem("token", jsonData.data.token);
 
@@ -179,11 +177,10 @@
                 const role = decodedToken.role;
 
                 console.log("role-", role);
-                debugger;
                 // Redirect based on the role
                 switch (role) {
                   case "student":
-                    window.location.href = "student-home.html";
+                    window.location.href = "showmarks_students.html";
                     break;
                   case "admin":
                     window.location.href = "admin/admin-home.html";
