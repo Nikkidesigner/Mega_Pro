@@ -10,7 +10,7 @@ The Student marks entry webapp designed to facilitate the management of student 
 - **Responsive Design:** Accessible on various devices and screen sizes.
 
  ## Project Structure
-![Uploading WhatsApp Image 2024-07-01 at 17.49.11_b715b57e.jpg…]()
+![WhatsApp Image 2024-07-01 at 17 49 11_b715b57e](https://github.com/Nikkidesigner/Mega_Pro/assets/148255530/0575b94b-65d3-4aef-931c-57e2349e4e0c)
 - **Frontend Technologies Used:** HTML, CSS, JavaScript
 - **Frameworks:** Bootstrap
 **Description:** The frontend is responsible for the user interface and user experience. It includes components for login, course and group management, and evaluation tasks.
